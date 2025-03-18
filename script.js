@@ -62,3 +62,14 @@ document.addEventListener("scroll", function() {
         section.style.backgroundPositionY = `${scrollPosition * speed}px`;
     });
 });
+
+
+
+// Toggle Mobile Navbar
+function toggleMenu() {
+    let nav = document.querySelector(".nav-links");
+    let menuToggle = document.querySelector(".menu-toggle");
+
+    nav.classList.toggle("active");
+    menuToggle.classList.toggle("open");
+}
