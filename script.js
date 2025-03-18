@@ -64,12 +64,17 @@ document.addEventListener("scroll", function() {
 });
 
 
-
 // Toggle Mobile Navbar
 function toggleMenu() {
-    let nav = document.querySelector(".nav-links");
-    let menuToggle = document.querySelector(".menu-toggle");
+    let navLinks = document.getElementById("navLinks");
+    let menuToggle = document.getElementById("menuToggle");
 
-    nav.classList.toggle("active");
-    menuToggle.classList.toggle("open");
+    navLinks.classList.toggle("active");
+
+    // Change menu icon between ☰ (open) and ✖ (close)
+    if (navLinks.classList.contains("active")) {
+        menuToggle.innerHTML = "✖";
+    } else {
+        menuToggle.innerHTML = "☰";
+    }
 }
