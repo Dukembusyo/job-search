@@ -1,5 +1,5 @@
 // Replace with your Google Apps Script Web App URL
-const scriptURL = "https://script.google.com/macros/s/AKfycby-fzcs6sbIsVyN8CaANKX3WDmG2zjjNL3qINDT9QPef6-nbJmY1Xm2KXTBZO8vcJL8/exec";
+const scriptURL = "";
 
 // Handle Employer Form Submission
 document.getElementById("opportunityForm").addEventListener("submit", function (event) {
