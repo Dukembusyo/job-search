@@ -1,5 +1,5 @@
 // Replace with your Google Apps Script Web App URL
-const scriptURL = "https://script.google.com/macros/s/AKfycbyyAwdIVWNoOXbuw9fbxJUJDDT9GdnU4BRDakOlmoKJF0GUEaHPyHAKH4AsFGBb75Su/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycby-fzcs6sbIsVyN8CaANKX3WDmG2zjjNL3qINDT9QPef6-nbJmY1Xm2KXTBZO8vcJL8/exec";
 
 // Handle Employer Form Submission
 document.getElementById("opportunityForm").addEventListener("submit", function (event) {
@@ -41,7 +41,6 @@ document.getElementById("seekerForm").addEventListener("submit", function (event
 
         let formData = new FormData();
         formData.append("seekerName", document.getElementById("seekerName").value);
-        formData.append("seekerEmail", document.getElementById("seekerEmail").value);
         formData.append("seekerPhone", document.getElementById("seekerPhone").value);
         formData.append("resume", base64String);
         formData.append("mimeType", fileInput.type);
@@ -59,6 +58,7 @@ document.getElementById("seekerForm").addEventListener("submit", function (event
         });
     };
 });
+
 
 
 
