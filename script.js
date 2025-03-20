@@ -1,5 +1,5 @@
 // Replace with your Google Apps Script Web App URL
-const scriptURL = "";
+const scriptURL = "https://script.google.com/macros/s/AKfycbw2wp5XKcPNcFbKaohqum17fjlpeR4yHoBxRHyI0cgB880aQ4GTbGGYoZs_v5-2K_N-gA/exec";
 
 // Handle Employer Form Submission
 document.getElementById("opportunityForm").addEventListener("submit", function (event) {
@@ -27,36 +27,22 @@ document.getElementById("opportunityForm").addEventListener("submit", function (
 document.getElementById("seekerForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
-    let fileInput = document.getElementById("seekerResume").files[0];
+    let formData = new FormData();
+    formData.append("seekerName", document.getElementById("seekerName").value);
+    formData.append("seekerEmail", document.getElementById("seekerEmail").value);
+    formData.append("seekerPhone", document.getElementById("seekerPhone").value);
+    formData.append("resume", document.getElementById("seekerResume").files[0]); // Upload Resume
 
-    if (!fileInput || fileInput.type !== "application/pdf") {
-        alert("❌ Please upload a valid PDF resume.");
-        return;
-    }
-
-    let reader = new FileReader();
-    reader.readAsDataURL(fileInput);
-    reader.onloadend = function () {
-        let base64String = reader.result.split(",")[1];
-
-        let formData = new FormData();
-        formData.append("seekerName", document.getElementById("seekerName").value);
-        formData.append("seekerPhone", document.getElementById("seekerPhone").value);
-        formData.append("resume", base64String);
-        formData.append("mimeType", fileInput.type);
-        formData.append("fileName", fileInput.name);
-
-        fetch(scriptURL, {
-            method: "POST",
-            body: formData
-        }).then(response => response.text())
-        .then(data => {
-            alert("🎉 Application submitted successfully!");
-            document.getElementById("seekerForm").reset();
-        }).catch(error => {
-            alert("❌ Submission failed. Please try again.");
-        });
-    };
+    fetch(scriptURL, {
+        method: "POST",
+        body: formData
+    }).then(response => response.text())
+    .then(data => {
+        alert("🎉 Application submitted successfully!");
+        document.getElementById("seekerForm").reset();
+    }).catch(error => {
+        alert("❌ Submission failed. Please try again.");
+    });
 });
 
 
