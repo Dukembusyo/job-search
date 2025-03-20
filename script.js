@@ -1,7 +1,7 @@
 // Replace with your Google Apps Script Web App URL
-const scriptURL = "https://script.google.com/macros/s/AKfycbw2wp5XKcPNcFbKaohqum17fjlpeR4yHoBxRHyI0cgB880aQ4GTbGGYoZs_v5-2K_N-gA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzapVEl6WjwsO3SoO1HW4Xhp8UKl7vOe7qIllOfzzd9zolh2gApOjVFtPflQv1hxiULBA/exec"; // Replace with your actual URL
 
-// Handle Employer Form Submission
+// Employer Form Submission
 document.getElementById("opportunityForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -23,15 +23,21 @@ document.getElementById("opportunityForm").addEventListener("submit", function (
     });
 });
 
-// Handle Job Seeker Form Submission
+// Job Seeker Form Submission
 document.getElementById("seekerForm").addEventListener("submit", function (event) {
     event.preventDefault();
+
+    let resumeFile = document.getElementById("seekerResume").files[0];
+    if (!resumeFile || resumeFile.type !== "application/pdf") {
+        alert("❌ Please upload a valid PDF resume.");
+        return;
+    }
 
     let formData = new FormData();
     formData.append("seekerName", document.getElementById("seekerName").value);
     formData.append("seekerEmail", document.getElementById("seekerEmail").value);
     formData.append("seekerPhone", document.getElementById("seekerPhone").value);
-    formData.append("resume", document.getElementById("seekerResume").files[0]); // Upload Resume
+    formData.append("resume", resumeFile); // Upload Resume
 
     fetch(scriptURL, {
         method: "POST",
